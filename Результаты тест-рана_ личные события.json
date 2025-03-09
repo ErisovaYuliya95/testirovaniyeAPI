@@ -1,0 +1,712 @@
+{
+	"id": "4efc1099-6e22-427a-abbd-0fc515994e7c",
+	"name": "Личные события",
+	"timestamp": "2025-02-28T14:36:08.381Z",
+	"collection_id": "41268766-f056d3fe-016c-4f45-9eb6-098c82cacc79",
+	"folder_id": 0,
+	"environment_id": "0",
+	"totalPass": 34,
+	"delay": 0,
+	"persist": true,
+	"status": "finished",
+	"startedAt": "2025-02-28T14:36:03.577Z",
+	"totalFail": 6,
+	"results": [
+		{
+			"id": "b79245ff-596e-4d58-85ba-cc7815272184",
+			"name": "1. Добавление события",
+			"url": "https://api-teachers.skyeng.ru/v2/schedule/createPersonal",
+			"time": 371,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Запрос успешно отработал": true,
+				"Время отклика менее 500мс": true
+			},
+			"testPassFailCounts": {
+				"Запрос успешно отработал": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Время отклика менее 500мс": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				371
+			],
+			"allTests": [
+				{
+					"Запрос успешно отработал": true,
+					"Время отклика менее 500мс": true
+				}
+			]
+		},
+		{
+			"id": "d5d7be04-664b-47e6-98cd-91ddc9109320",
+			"name": "2. Получение информации о событии",
+			"url": "https://api-teachers.skyeng.ru/v2/schedule/events",
+			"time": 263,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Запрос успешно отработал": true,
+				"Время отклика менее 500мс": true
+			},
+			"testPassFailCounts": {
+				"Запрос успешно отработал": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Время отклика менее 500мс": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				263
+			],
+			"allTests": [
+				{
+					"Запрос успешно отработал": true,
+					"Время отклика менее 500мс": true
+				}
+			]
+		},
+		{
+			"id": "f116511c-1ebf-4f19-8e58-baac9ae11a06",
+			"name": "3. Изменение названия события",
+			"url": "https://api-teachers.skyeng.ru/v2/schedule/updatePersonal",
+			"time": 224,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Запрос успешно отработал": true,
+				"Время отклика менее 500мс": true,
+				"Название содержит нужный текст": true
+			},
+			"testPassFailCounts": {
+				"Запрос успешно отработал": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Время отклика менее 500мс": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Название содержит нужный текст": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				224
+			],
+			"allTests": [
+				{
+					"Запрос успешно отработал": true,
+					"Время отклика менее 500мс": true,
+					"Название содержит нужный текст": true
+				}
+			]
+		},
+		{
+			"id": "dcbba746-118f-433e-8be9-e56e43fb5ebb",
+			"name": "4. Изменение описания события",
+			"url": "https://api-teachers.skyeng.ru/v2/schedule/updatePersonal",
+			"time": 172,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Запрос успешно отработал": true,
+				"Время отклика менее 500мс": true,
+				"Название содержит нужный текст": true
+			},
+			"testPassFailCounts": {
+				"Запрос успешно отработал": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Время отклика менее 500мс": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Название содержит нужный текст": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				172
+			],
+			"allTests": [
+				{
+					"Запрос успешно отработал": true,
+					"Время отклика менее 500мс": true,
+					"Название содержит нужный текст": true
+				}
+			]
+		},
+		{
+			"id": "9f65ff73-27aa-4144-a6d4-b9c348243d17",
+			"name": "5. Удаление описания события (поле пустое)",
+			"url": "https://api-teachers.skyeng.ru/v2/schedule/updatePersonal",
+			"time": 182,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Запрос успешно отработал": true,
+				"Время отклика менее 500мс": true
+			},
+			"testPassFailCounts": {
+				"Запрос успешно отработал": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Время отклика менее 500мс": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				182
+			],
+			"allTests": [
+				{
+					"Запрос успешно отработал": true,
+					"Время отклика менее 500мс": true
+				}
+			]
+		},
+		{
+			"id": "05ae40f3-910f-44ca-a217-3b05f9c131dd",
+			"name": "6. Добавление в описание ссылки",
+			"url": "https://api-teachers.skyeng.ru/v2/schedule/updatePersonal",
+			"time": 174,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Запрос успешно отработал": true,
+				"Время отклика менее 500мс": true,
+				"Название содержит нужный текст": true
+			},
+			"testPassFailCounts": {
+				"Запрос успешно отработал": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Время отклика менее 500мс": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Название содержит нужный текст": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				174
+			],
+			"allTests": [
+				{
+					"Запрос успешно отработал": true,
+					"Время отклика менее 500мс": true,
+					"Название содержит нужный текст": true
+				}
+			]
+		},
+		{
+			"id": "445fc0a7-ac5d-4a24-a9a2-f2723b8db933",
+			"name": "7. Изменение цвета события на другой стандартный",
+			"url": "https://api-teachers.skyeng.ru/v2/schedule/updatePersonal",
+			"time": 173,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Запрос успешно отработал": true,
+				"Время отклика менее 500мс": true
+			},
+			"testPassFailCounts": {
+				"Запрос успешно отработал": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Время отклика менее 500мс": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				173
+			],
+			"allTests": [
+				{
+					"Запрос успешно отработал": true,
+					"Время отклика менее 500мс": true
+				}
+			]
+		},
+		{
+			"id": "a8b5fd01-9f82-474d-9bcc-99c8b49112e6",
+			"name": "8. Изменение даты события на +1 день вперед",
+			"url": "https://api-teachers.skyeng.ru/v2/schedule/updatePersonal",
+			"time": 196,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Запрос успешно отработал": true,
+				"Время отклика менее 500мс": true
+			},
+			"testPassFailCounts": {
+				"Запрос успешно отработал": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Время отклика менее 500мс": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				196
+			],
+			"allTests": [
+				{
+					"Запрос успешно отработал": true,
+					"Время отклика менее 500мс": true
+				}
+			]
+		},
+		{
+			"id": "074b838d-0a21-4a3f-9664-3bdedc19ef22",
+			"name": "9. Изменение времени события (время начала меньше времени завершения события)",
+			"url": "https://api-teachers.skyeng.ru/v2/schedule/updatePersonal",
+			"time": 211,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Запрос успешно отработал": true,
+				"Время отклика менее 500мс": true
+			},
+			"testPassFailCounts": {
+				"Запрос успешно отработал": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Время отклика менее 500мс": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				211
+			],
+			"allTests": [
+				{
+					"Запрос успешно отработал": true,
+					"Время отклика менее 500мс": true
+				}
+			]
+		},
+		{
+			"id": "4e3f48f0-b11c-4102-b38e-e752b65ef0c7",
+			"name": "10. Создание события с датой в прошлом месяце",
+			"url": "https://api-teachers.skyeng.ru/v2/schedule/createPersonal",
+			"time": 176,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Запрос успешно отработал": true,
+				"Время отклика менее 500мс": true
+			},
+			"testPassFailCounts": {
+				"Запрос успешно отработал": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Время отклика менее 500мс": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				176
+			],
+			"allTests": [
+				{
+					"Запрос успешно отработал": true,
+					"Время отклика менее 500мс": true
+				}
+			]
+		},
+		{
+			"id": "9be49a8c-aaf1-4e7b-a517-51d1808a1670",
+			"name": "10.1. Получение информации о событии в прошлом месяце",
+			"url": "https://api-teachers.skyeng.ru/v2/schedule/events",
+			"time": 246,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Запрос успешно отработал": true,
+				"Время отклика менее 500мс": true
+			},
+			"testPassFailCounts": {
+				"Запрос успешно отработал": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Время отклика менее 500мс": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				246
+			],
+			"allTests": [
+				{
+					"Запрос успешно отработал": true,
+					"Время отклика менее 500мс": true
+				}
+			]
+		},
+		{
+			"id": "d90e2083-6034-4155-bd27-05d6c2884544",
+			"name": "11. Удаление события",
+			"url": "https://api-teachers.skyeng.ru/v2/schedule/removePersonal",
+			"time": 88,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Запрос успешно отработал": true,
+				"Время отклика менее 500мс": true
+			},
+			"testPassFailCounts": {
+				"Запрос успешно отработал": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Время отклика менее 500мс": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				88
+			],
+			"allTests": [
+				{
+					"Запрос успешно отработал": true,
+					"Время отклика менее 500мс": true
+				}
+			]
+		},
+		{
+			"id": "b10b90d8-6ea8-49d8-9ed7-59345b5ec9ba",
+			"name": "1. Создание события с пустым полем \"Название\"",
+			"url": "https://api-teachers.skyeng.ru/v2/schedule/createPersonal",
+			"time": 67,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Некорректный запрос": false,
+				"Время отклика менее 500мс": true
+			},
+			"testPassFailCounts": {
+				"Некорректный запрос": {
+					"pass": 0,
+					"fail": 1
+				},
+				"Время отклика менее 500мс": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				67
+			],
+			"allTests": [
+				{
+					"Некорректный запрос": false,
+					"Время отклика менее 500мс": true
+				}
+			]
+		},
+		{
+			"id": "1ff7bc56-50ca-4d9a-a595-af05bd4448b3",
+			"name": "2. Создание события с название в 41 символ",
+			"url": "https://api-teachers.skyeng.ru/v2/schedule/createPersonal",
+			"time": 58,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Некорректный запрос": false,
+				"Время отклика менее 500мс": true
+			},
+			"testPassFailCounts": {
+				"Некорректный запрос": {
+					"pass": 0,
+					"fail": 1
+				},
+				"Время отклика менее 500мс": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				58
+			],
+			"allTests": [
+				{
+					"Некорректный запрос": false,
+					"Время отклика менее 500мс": true
+				}
+			]
+		},
+		{
+			"id": "da35e1c3-cfec-43f1-964f-1063611f26ae",
+			"name": "3. Создание события без цвета",
+			"url": "https://api-teachers.skyeng.ru/v2/schedule/createPersonal",
+			"time": 65,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Некорректный запрос": false,
+				"Время отклика менее 500мс": true
+			},
+			"testPassFailCounts": {
+				"Некорректный запрос": {
+					"pass": 0,
+					"fail": 1
+				},
+				"Время отклика менее 500мс": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				65
+			],
+			"allTests": [
+				{
+					"Некорректный запрос": false,
+					"Время отклика менее 500мс": true
+				}
+			]
+		},
+		{
+			"id": "cb87b1bd-942a-45b0-8d44-b32c37765781",
+			"name": "4. Создание события с цветом не из списка возможных",
+			"url": "https://api-teachers.skyeng.ru/v2/schedule/createPersonal",
+			"time": 147,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Некорректный запрос": false,
+				"Время отклика менее 500мс": true,
+				"Создано событие с невозможным цветом": true
+			},
+			"testPassFailCounts": {
+				"Некорректный запрос": {
+					"pass": 0,
+					"fail": 1
+				},
+				"Время отклика менее 500мс": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Создано событие с невозможным цветом": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				147
+			],
+			"allTests": [
+				{
+					"Некорректный запрос": false,
+					"Время отклика менее 500мс": true,
+					"Создано событие с невозможным цветом": true
+				}
+			]
+		},
+		{
+			"id": "dd92475c-2da0-47aa-bad6-901f396ff31e",
+			"name": "5. Создание события с датой более чем 6 месяцев в прошлом",
+			"url": "https://api-teachers.skyeng.ru/v2/schedule/createPersonal",
+			"time": 145,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Некорректный запрос": false,
+				"Время отклика менее 500мс": true
+			},
+			"testPassFailCounts": {
+				"Некорректный запрос": {
+					"pass": 0,
+					"fail": 1
+				},
+				"Время отклика менее 500мс": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				145
+			],
+			"allTests": [
+				{
+					"Некорректный запрос": false,
+					"Время отклика менее 500мс": true
+				}
+			]
+		},
+		{
+			"id": "152a73ed-bf49-44d1-9d0b-9a64ca945a10",
+			"name": "6. Создание события без указания даты и времени",
+			"url": "https://api-teachers.skyeng.ru/v2/schedule/createPersonal",
+			"time": 57,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Некорректный запрос": false,
+				"Время отклика менее 500мс": true
+			},
+			"testPassFailCounts": {
+				"Некорректный запрос": {
+					"pass": 0,
+					"fail": 1
+				},
+				"Время отклика менее 500мс": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				57
+			],
+			"allTests": [
+				{
+					"Некорректный запрос": false,
+					"Время отклика менее 500мс": true
+				}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 3015,
+	"collection": {
+		"requests": [
+			{
+				"id": "b79245ff-596e-4d58-85ba-cc7815272184",
+				"method": "POST"
+			},
+			{
+				"id": "d5d7be04-664b-47e6-98cd-91ddc9109320",
+				"method": "POST"
+			},
+			{
+				"id": "f116511c-1ebf-4f19-8e58-baac9ae11a06",
+				"method": "POST"
+			},
+			{
+				"id": "dcbba746-118f-433e-8be9-e56e43fb5ebb",
+				"method": "POST"
+			},
+			{
+				"id": "9f65ff73-27aa-4144-a6d4-b9c348243d17",
+				"method": "POST"
+			},
+			{
+				"id": "05ae40f3-910f-44ca-a217-3b05f9c131dd",
+				"method": "POST"
+			},
+			{
+				"id": "445fc0a7-ac5d-4a24-a9a2-f2723b8db933",
+				"method": "POST"
+			},
+			{
+				"id": "a8b5fd01-9f82-474d-9bcc-99c8b49112e6",
+				"method": "POST"
+			},
+			{
+				"id": "074b838d-0a21-4a3f-9664-3bdedc19ef22",
+				"method": "POST"
+			},
+			{
+				"id": "4e3f48f0-b11c-4102-b38e-e752b65ef0c7",
+				"method": "POST"
+			},
+			{
+				"id": "9be49a8c-aaf1-4e7b-a517-51d1808a1670",
+				"method": "POST"
+			},
+			{
+				"id": "d90e2083-6034-4155-bd27-05d6c2884544",
+				"method": "POST"
+			},
+			{
+				"id": "b10b90d8-6ea8-49d8-9ed7-59345b5ec9ba",
+				"method": "POST"
+			},
+			{
+				"id": "1ff7bc56-50ca-4d9a-a595-af05bd4448b3",
+				"method": "POST"
+			},
+			{
+				"id": "da35e1c3-cfec-43f1-964f-1063611f26ae",
+				"method": "POST"
+			},
+			{
+				"id": "cb87b1bd-942a-45b0-8d44-b32c37765781",
+				"method": "POST"
+			},
+			{
+				"id": "dd92475c-2da0-47aa-bad6-901f396ff31e",
+				"method": "POST"
+			},
+			{
+				"id": "152a73ed-bf49-44d1-9d0b-9a64ca945a10",
+				"method": "POST"
+			}
+		]
+	}
+}

@@ -1,0 +1,1208 @@
+{
+	"info": {
+		"_postman_id": "f056d3fe-016c-4f45-9eb6-098c82cacc79",
+		"name": "Личные события",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "41268766",
+		"_collection_link": "https://skypro-4529.postman.co/workspace/%D0%9A%D1%83%D1%80%D1%81%D0%BE%D0%B2%D0%B0%D1%8F-%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%3A-%D0%9B%D0%B8%D1%87%D0%BD%D1%8B%D0%B5-%D1%81%D0%BE%D0%B1%D1%8B%D1%82%D0%B8%D1%8F~afaf649a-29a2-4612-826b-289dcc1c5113/collection/41268766-f056d3fe-016c-4f45-9eb6-098c82cacc79?action=share&source=collection_link&creator=41268766"
+	},
+	"item": [
+		{
+			"name": "Позитивные проверки",
+			"item": [
+				{
+					"name": "Создание события",
+					"item": [
+						{
+							"name": "1. Добавление события",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Запрос успешно отработал\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Время отклика менее 500мс\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+											"});\r",
+											"\r",
+											"var key = \"id_event\"\r",
+											"var value = pm.response.json().data.payload.id\r",
+											"pm.collectionVariables.set(key, value)\r",
+											"\r",
+											"var key = \"description\"\r",
+											"var value = pm.response.json().data.payload.payload.description\r",
+											"pm.collectionVariables.set(key, value)\r",
+											"\r",
+											"var key = \"title\"\r",
+											"var value = pm.response.json().data.payload.payload.title\r",
+											"pm.collectionVariables.set(key, value)"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"//var key = \"timeStart\"\r",
+											"//var value = new Date()\r",
+											"//pm.collectionVariables.set(key, value)"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"backgroundColor\": \"#FFF7C7\",\r\n    \"color\": \"#FAC641\",\r\n    \"description\": \"{{$randomCatchPhrase}}\",\r\n    \"title\": \"{{$randomProduct}}\",\r\n    \"startAt\": \"{{startAt}}\",\r\n    \"endAt\": \"{{endAt}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}createPersonal",
+									"host": [
+										"{{baseURL}}createPersonal"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "2. Получение информации о событии",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Запрос успешно отработал\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Время отклика менее 500мс\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"from\": \"{{startAt}}\",\r\n    \"till\": \"{{endAt}}\",\r\n    \"onlyTypes\": [\r\n        \"event\"\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}events",
+									"host": [
+										"{{baseURL}}events"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Изменение события",
+					"item": [
+						{
+							"name": "3. Изменение названия события",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Запрос успешно отработал\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Время отклика менее 500мс\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+											"});\r",
+											"\r",
+											"var key = \"description\"\r",
+											"var value = pm.response.json().data.payload.payload.description\r",
+											"pm.collectionVariables.set(key, value)\r",
+											"\r",
+											"var key = \"title\"\r",
+											"var value = pm.response.json().data.payload.payload.title\r",
+											"pm.collectionVariables.set(key, value)\r",
+											"\r",
+											"var key = \"oldTime\"\r",
+											"var value = pm.response.json().data.startAt\r",
+											"pm.collectionVariables.set(key, value)\r",
+											"\r",
+											"pm.test(\"Название содержит нужный текст\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"Hello\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"backgroundColor\": \"#FFF7C7\",\r\n    \"color\": \"#FAC641\",\r\n    \"description\": \"{{description}}\",\r\n    \"title\": \"Hello\",\r\n    \"startAt\": \"{{startAt}}\",\r\n    \"endAt\": \"{{endAt}}\",\r\n    \"id\": {{id_event}},\r\n    \"oldStartAt\": \"{{startAt}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}updatePersonal",
+									"host": [
+										"{{baseURL}}updatePersonal"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "4. Изменение описания события",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Запрос успешно отработал\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Время отклика менее 500мс\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+											"});\r",
+											"\r",
+											"var key = \"description\"\r",
+											"var value = pm.response.json().data.payload.payload.description\r",
+											"pm.collectionVariables.set(key, value)\r",
+											"\r",
+											"var key = \"title\"\r",
+											"var value = pm.response.json().data.payload.payload.title\r",
+											"pm.collectionVariables.set(key, value)\r",
+											"\r",
+											"var key = \"oldTime\"\r",
+											"var value = pm.response.json().data.startAt\r",
+											"pm.collectionVariables.set(key, value)\r",
+											"\r",
+											"pm.test(\"Название содержит нужный текст\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"We study\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"backgroundColor\": \"#FFF7C7\",\r\n    \"color\": \"#FAC641\",\r\n    \"description\": \"We study\",\r\n    \"title\": \"{{title}}\",\r\n    \"startAt\": \"{{startAt}}\",\r\n    \"endAt\": \"{{endAt}}\",\r\n    \"id\": {{id_event}},\r\n    \"oldStartAt\": \"{{oldTime}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}updatePersonal",
+									"host": [
+										"{{baseURL}}updatePersonal"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "5. Удаление описания события (поле пустое)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Запрос успешно отработал\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Время отклика менее 500мс\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+											"});\r",
+											"\r",
+											"var key = \"description\"\r",
+											"var value = pm.response.json().data.payload.payload.description\r",
+											"pm.collectionVariables.set(key, value)\r",
+											"\r",
+											"var key = \"title\"\r",
+											"var value = pm.response.json().data.payload.payload.title\r",
+											"pm.collectionVariables.set(key, value)\r",
+											"\r",
+											"var key = \"oldTime\"\r",
+											"var value = pm.response.json().data.startAt\r",
+											"pm.collectionVariables.set(key, value)"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"backgroundColor\": \"#FFF7C7\",\r\n    \"color\": \"#FAC641\",\r\n    \"description\": \"\",\r\n    \"title\": \"{{title}}\",\r\n    \"startAt\": \"{{startAt}}\",\r\n    \"endAt\": \"{{endAt}}\",\r\n    \"id\": {{id_event}},\r\n    \"oldStartAt\": \"{{oldTime}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}updatePersonal",
+									"host": [
+										"{{baseURL}}updatePersonal"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "6. Добавление в описание ссылки",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Запрос успешно отработал\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Время отклика менее 500мс\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+											"});\r",
+											"\r",
+											"var key = \"description\"\r",
+											"var value = pm.response.json().data.payload.payload.description\r",
+											"pm.collectionVariables.set(key, value)\r",
+											"\r",
+											"var key = \"title\"\r",
+											"var value = pm.response.json().data.payload.payload.title\r",
+											"pm.collectionVariables.set(key, value)\r",
+											"\r",
+											"var key = \"oldTime\"\r",
+											"var value = pm.response.json().data.startAt\r",
+											"pm.collectionVariables.set(key, value)\r",
+											"\r",
+											"pm.test(\"Название содержит нужный текст\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"welovedance.ru\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"backgroundColor\": \"#FFF7C7\",\r\n    \"color\": \"#FAC641\",\r\n    \"description\": \"https://welovedance.ru/site/styles/disko\",\r\n    \"title\": \"{{title}}\",\r\n    \"startAt\": \"{{startAt}}\",\r\n    \"endAt\": \"{{endAt}}\",\r\n    \"id\": {{id_event}},\r\n    \"oldStartAt\": \"{{oldTime}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}updatePersonal",
+									"host": [
+										"{{baseURL}}updatePersonal"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "7. Изменение цвета события на другой стандартный",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Запрос успешно отработал\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Время отклика менее 500мс\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+											"});\r",
+											"\r",
+											"var key = \"description\"\r",
+											"var value = pm.response.json().data.payload.payload.description\r",
+											"pm.collectionVariables.set(key, value)\r",
+											"\r",
+											"var key = \"title\"\r",
+											"var value = pm.response.json().data.payload.payload.title\r",
+											"pm.collectionVariables.set(key, value)\r",
+											"\r",
+											"var key = \"oldTime\"\r",
+											"var value = pm.response.json().data.startAt\r",
+											"pm.collectionVariables.set(key, value)\r",
+											"\r",
+											"var key = \"color\"\r",
+											"var value = pm.response.json().data.payload.payload.color\r",
+											"pm.collectionVariables.set(key, value)\r",
+											"\r",
+											"var key = \"bg_color\"\r",
+											"var value = pm.response.json().data.payload.payload.backgroundColor\r",
+											"pm.collectionVariables.set(key, value)"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"backgroundColor\": \"#EBFDF2\",\r\n    \"color\": \"#43B658\",\r\n    \"description\": \"{{description}}\",\r\n    \"title\": \"{{title}}\",\r\n    \"startAt\": \"{{startAt}}\",\r\n    \"endAt\": \"{{endAt}}\",\r\n    \"id\": {{id_event}},\r\n    \"oldStartAt\": \"{{oldTime}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}updatePersonal",
+									"host": [
+										"{{baseURL}}updatePersonal"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "8. Изменение даты события на +1 день вперед",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Запрос успешно отработал\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Время отклика менее 500мс\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+											"});\r",
+											"\r",
+											"var key = \"id_event\"\r",
+											"var value = pm.response.json().data.payload.id\r",
+											"pm.collectionVariables.set(key, value)\r",
+											"\r",
+											"var key = \"description\"\r",
+											"var value = pm.response.json().data.payload.payload.description\r",
+											"pm.collectionVariables.set(key, value)\r",
+											"\r",
+											"var key = \"title\"\r",
+											"var value = pm.response.json().data.payload.payload.title\r",
+											"pm.collectionVariables.set(key, value)\r",
+											"\r",
+											"var key = \"oldTime\"\r",
+											"var value = pm.response.json().data.startAt\r",
+											"pm.collectionVariables.set(key, value)"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"backgroundColor\": \"{{bg_color}}\",\r\n    \"color\": \"{{color}}\",\r\n    \"description\": \"{{description}}\",\r\n    \"title\": \"{{title}}\",\r\n    \"startAt\": \"{{startAtNew}}\",\r\n    \"endAt\": \"{{endAtNew}}\",\r\n    \"id\": {{id_event}},\r\n    \"oldStartAt\": \"{{oldTime}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}updatePersonal",
+									"host": [
+										"{{baseURL}}updatePersonal"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "9. Изменение времени события (время начала меньше времени завершения события)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Запрос успешно отработал\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Время отклика менее 500мс\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+											"});\r",
+											"\r",
+											"var key = \"description\"\r",
+											"var value = pm.response.json().data.payload.payload.description\r",
+											"pm.collectionVariables.set(key, value)\r",
+											"\r",
+											"var key = \"title\"\r",
+											"var value = pm.response.json().data.payload.payload.title\r",
+											"pm.collectionVariables.set(key, value)\r",
+											"\r",
+											"var key = \"oldTime\"\r",
+											"var value = pm.response.json().data.startAt\r",
+											"pm.collectionVariables.set(key, value)\r",
+											"\r",
+											"var key = \"id_event\"\r",
+											"var value = pm.response.json().data.payload.id\r",
+											"pm.collectionVariables.set(key, value)"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"backgroundColor\": \"{{bg_color}}\",\r\n    \"color\": \"{{color}}\",\r\n    \"description\": \"{{description}}\",\r\n    \"title\": \"{{title}}\",\r\n    \"startAt\": \"{{startAtNewTime}}\",\r\n    \"endAt\": \"{{endAtNewTime}}\",\r\n    \"id\": {{id_event}},\r\n    \"oldStartAt\": \"{{oldTime}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}updatePersonal",
+									"host": [
+										"{{baseURL}}updatePersonal"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Создание события с датой в прошлом месяце",
+					"item": [
+						{
+							"name": "10. Создание события с датой в прошлом месяце",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Запрос успешно отработал\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Время отклика менее 500мс\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+											"});\r",
+											"\r",
+											"var key = \"id_event\"\r",
+											"var value = pm.response.json().data.payload.id\r",
+											"pm.collectionVariables.set(key, value)\r",
+											"\r",
+											"var key = \"description\"\r",
+											"var value = pm.response.json().data.payload.payload.description\r",
+											"pm.collectionVariables.set(key, value)\r",
+											"\r",
+											"\r",
+											"var key = \"title\"\r",
+											"var value = pm.response.json().data.payload.payload.title\r",
+											"pm.collectionVariables.set(key, value)"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"backgroundColor\": \"#FFF7C7\",\r\n  \"color\": \"#FAC641\",\r\n  \"description\": \"{{$randomCatchPhrase}}\",\r\n  \"title\": \"{{$randomProduct}}\",\r\n  \"startAt\": \"{{startAtOld}}\",\r\n  \"endAt\": \"{{endAtOld}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}createPersonal",
+									"host": [
+										"{{baseURL}}createPersonal"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "10.1. Получение информации о событии в прошлом месяце",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Запрос успешно отработал\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Время отклика менее 500мс\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Cookie",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"from\": \"{{startAtOld}}\",\r\n    \"till\": \"{{endAtOld}}\",\r\n    \"onlyTypes\": [\r\n        \"event\"\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}events",
+									"host": [
+										"{{baseURL}}events"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "11. Удаление события",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Запрос успешно отработал\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Время отклика менее 500мс\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": {{id_event}},\r\n  \"startAt\": \"{{startAtNewTime}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}removePersonal",
+							"host": [
+								"{{baseURL}}removePersonal"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Негативные проверки",
+			"item": [
+				{
+					"name": "1. Создание события с пустым полем \"Название\"",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Некорректный запрос\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Время отклика менее 500мс\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"backgroundColor\": \"#FFF7C7\",\r\n    \"color\": \"#FAC641\",\r\n    \"description\": \"{{$randomCatchPhrase}}\",\r\n    \"title\": \"\",\r\n    \"startAt\": \"{{startAt}}\",\r\n    \"endAt\": \"{{endAt}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}createPersonal",
+							"host": [
+								"{{baseURL}}createPersonal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2. Создание события с название в 41 символ",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Некорректный запрос\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Время отклика менее 500мс\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"backgroundColor\": \"#FFF7C7\",\r\n    \"color\": \"#FAC641\",\r\n    \"description\": \"{{$randomCatchPhrase}}\",\r\n    \"title\": \"Соображения высшего порядка а также социа\",\r\n    \"startAt\": \"{{startAt}}\",\r\n    \"endAt\": \"{{endAt}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}createPersonal",
+							"host": [
+								"{{baseURL}}createPersonal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3. Создание события без цвета",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Некорректный запрос\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Время отклика менее 500мс\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"backgroundColor\": \"\",\r\n    \"color\": \"\",\r\n    \"description\": \"{{$randomCatchPhrase}}\",\r\n    \"title\": \"{{$randomProduct}}\",\r\n    \"startAt\": \"{{startAt}}\",\r\n    \"endAt\": \"{{endAt}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}createPersonal",
+							"host": [
+								"{{baseURL}}createPersonal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "4. Создание события с цветом не из списка возможных",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Некорректный запрос\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Время отклика менее 500мс\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Создано событие с невозможным цветом\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"ED1919\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"backgroundColor\": \"#FDEBEB\",\r\n    \"color\": \"#ED1919\",\r\n    \"description\": \"{{$randomCatchPhrase}}\",\r\n    \"title\": \"{{$randomProduct}}\",\r\n    \"startAt\": \"{{startAt}}\",\r\n    \"endAt\": \"{{endAt}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}createPersonal",
+							"host": [
+								"{{baseURL}}createPersonal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "5. Создание события с датой более чем 6 месяцев в прошлом",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Некорректный запрос\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Время отклика менее 500мс\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"backgroundColor\": \"#FFF7C7\",\r\n    \"color\": \"#FAC641\",\r\n    \"description\": \"Это событие создано в прошлом на 6 месяцев назад\",\r\n    \"title\": \"Very old lesson\",\r\n    \"startAt\": \"2024-07-23T12:30:00+05:00\",\r\n    \"endAt\": \"2024-07-23T14:30:00+05:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}createPersonal",
+							"host": [
+								"{{baseURL}}createPersonal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "6. Создание события без указания даты и времени",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Некорректный запрос\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Время отклика менее 500мс\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"backgroundColor\": \"#FFF7C7\",\r\n    \"color\": \"#FAC641\",\r\n    \"description\": \"{{$randomCatchPhrase}}\",\r\n    \"title\": \"{{$randomProduct}}\",\r\n    \"startAt\": \"\",\r\n    \"endAt\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}createPersonal",
+							"host": [
+								"{{baseURL}}createPersonal"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "token",
+			"value": "token_global=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ1c2VySWQiOjE0NzIwMDY5LCJpZGVudGl0eSI6InRlc3QudHN0MzIwQHNreWVuZy5ydSIsImlkZW50aXR5TG9naW4iOm51bGwsImlkZW50aXR5RW1haWwiOiJ0ZXN0LnRzdDMyMEBza3llbmcucnUiLCJpZGVudGl0eVBob25lIjoiKzc5ODU0NTg2NTY4IiwibmFtZSI6InRlc3RURUNUIiwic3VybmFtZSI6bnVsbCwiZW1haWwiOiJ0ZXN0LnRzdDMyMEBza3llbmcucnUiLCJ1aUxhbmd1YWdlIjoicnUiLCJsb2NhbGUiOiJydSIsInNlcnZpY2VMb2NhbGUiOm51bGwsInVhcyI6MzAsImp3dFR5cGUiOjEsImp0aSI6Im1GNzJucUtieEFwTlV3N0R0NWZ1TWEzSWpwVzI4SXhQIiwiYnJhbmQiOm51bGwsImV4cCI6MTc0MDgyOTM2NiwiYmlydGhkYXkiOiIyMDA3LTEyLTI4IiwiYUlzU3Ryb25nIjp0cnVlLCJhVHlwZSI6IlVTRVJOQU1FX1BBU1NXT1JEIiwiYVRpbWUiOjE3NDAxMzE3NjgsInJvbGVzIjpbIlJPTEVfVEVBQ0hFUl9DQU5ESURBVEUiLCJST0xFX1RFQUNIRVJfQ0FORElEQVRFX0JBU0VfQUNDRVNTIiwiUk9MRV9UUk1fVVBMT0FEX0ZJTEUiLCJST0xFX1RUQ19VU0FHRSIsIlJPTEVfVklNQk9YX1RFQUNIRVJfVVNBR0UiLCJST0xFX1RFQUNIRVIiLCJST0xFX0NSTTJfVEVBQ0hFUl9BQ0NFU1MiLCJST0xFX1RFQUNIRVJTX0NBQklORVRfQkFTRV9BQ0NFU1MiLCJST0xFX01BVEhfVEVBQ0hFUiIsIlJPTEVfTUFUSF9DT05URU5UX1RIRU1FX1ZJRVciXX0.kKF1HPMOQIV3gfLgccqQZGyXKMwQEFPY3vEC643paTQ-lkS7yFoCuuuagC1VmHn5by1pG7D4Bf8yYza32g0YjR0rwmraPwUsF3aNLWHoPVduvOtyGjD0q5bz6p6Mx_XhAjfhxgEoz-So6TLd484Ds9tn30YND53KSo1raTs6iNdUFjT0XMAjeSjtW_ImW83J_wfGVmyg3eVH9ZiaM7O3qVUf_oBTI4k3gb90dL9gYVEq9Bpyz8mcAI0PLSRA2sOPfEyEt5HHp2lc6__WrjsksQ_AQegLHkspk239BwQE1vayu2kWCSumKXoGq4-uPeHUryt6loyTxNDCYLnkT7PZpWhKW8TYWBSmG7rWylWQPxPQ5-rGeEF9GyWTsaK7S2WTXe1pYqm3VXy2Zwvtb8HiC1GgjsfoP7lhquC48CsWqsWdcKNac2gdJQr2EaaX0iPPceYRhy-mH5budFvdQeziASTP0p9X4kM9rAE5XSNX11bkMBu4AlSjdJajve9CPdVBKJtP8BuDWqqnksp9RL05I_LjS8z9q5Xh5Z5ALnot3gDXSidPXv2pYi4uUSsqm1ka7UXi3Glz8hCqbQQT_MRIysHEXoBtVtHiclPDV_uxWQUgskXTaCH2OvdhAfNLMfE7k_J7yG5dgKqTATHDgsSgwaZp2iUbilOcZOolAIlh1u4",
+			"type": "string"
+		},
+		{
+			"key": "baseURL",
+			"value": "https://api-teachers.skyeng.ru/v2/schedule/",
+			"type": "string"
+		},
+		{
+			"key": "id_event",
+			"value": ""
+		},
+		{
+			"key": "description",
+			"value": ""
+		},
+		{
+			"key": "title",
+			"value": ""
+		},
+		{
+			"key": "startAt",
+			"value": "2025-02-23T12:30:00+05:00"
+		},
+		{
+			"key": "endAt",
+			"value": "2025-02-23T14:30:00+05:00",
+			"type": "string"
+		},
+		{
+			"key": "startAtNew",
+			"value": "2025-02-24T12:30:00+05:00",
+			"type": "string"
+		},
+		{
+			"key": "endAtNew",
+			"value": "2025-02-24T14:30:00+05:00",
+			"type": "string"
+		},
+		{
+			"key": "startAtNewTime",
+			"value": "2025-02-24T13:30:00+05:00",
+			"type": "string"
+		},
+		{
+			"key": "endAtNewTime",
+			"value": "2025-02-24T16:30:00+05:00",
+			"type": "string"
+		},
+		{
+			"key": "startAtOld",
+			"value": "2025-01-23T19:30:00+05:00",
+			"type": "string"
+		},
+		{
+			"key": "endAtOld",
+			"value": "2025-01-23T20:30:00+05:00",
+			"type": "string"
+		},
+		{
+			"key": "color",
+			"value": ""
+		},
+		{
+			"key": "bg_color",
+			"value": ""
+		},
+		{
+			"key": "oldTime",
+			"value": ""
+		}
+	]
+}
